@@ -31,6 +31,26 @@ fn get_y(p: Point) -> u8 {
     p.1
 }
 
+struct Rectangle {
+    width: f64,
+    height: f64
+}
+
+impl Rectangle {
+    fn get_area(&self) -> f64 {
+        self.height * self.width
+    }
+
+    fn scale(&mut self, scale: f64) {
+        self.height *= scale;
+        self.width *= scale;
+    }
+
+    fn new(w: f64, h: f64) -> Rectangle {
+        Rectangle { width: w, height: h }
+    }
+}
+
 fn main() {
     println!("Hello, world!");
 
@@ -58,4 +78,10 @@ fn main() {
     let coord = Point(34,7,8);
     let y = get_y(coord);
     println! ("The y is {y}");
+
+    let mut rect = Rectangle::new(1.2, 3.4);
+    assert_eq!(rect.get_area(), 4.08);
+    rect.scale(0.5);
+    assert_eq!(rect.get_area(), 1.02);
+    println!("Tests passed!");
 }
